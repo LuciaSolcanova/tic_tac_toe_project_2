@@ -9,7 +9,6 @@ discord: Lucka #0676
 """
 
 import os
-import random
 
 from art_tictactoe import art
 
@@ -18,14 +17,18 @@ from art_tictactoe import art
     # pozdravení uživatele
     # vypsání pravidel hry
 
+
+
+player_x = 'X'      # tento hráč začíná vždy první
+player_o = 'O'
+expectation = 0
+separator = '========================================'
+separator_2 = '--------------------------------------------'
+
 def great():
     '''Tato funkce pozdraví uživatele a vypíše pravidla hry'''
 
     print(art)
-
-    separator = '========================================'
-    separator_2 = '--------------------------------------------'
-
     print('Welcome to Tic Tac Toe')
     print(separator)
     print('''GAME RULES:\nEachEach player can place one mark (or stone)
@@ -60,62 +63,65 @@ def playing_board(board):
 
 playing_board(board)
 
-# Výzva hráči, aby umístil kámen na pozici
+def check(moves):
+    '''Pokud index není prázdný, upozorní uživatele pro zadání jiného čísla'''
 
-def player(board):
-    '''Funkce předpokládá, že začíná hráč X'''
-
-    move = 0
-
-    for index in range(3):
-        for i in range(3):
-            if board[index][i] != ' ':
-                move += 1
-
-    if move % 2 == 0:
-        int(input('Player X | Please enter your move number: '))
-    else:
-        int(input('Player O | Please enter your move number:'))
-    
+    if board[moves - 1] != ' ':
+        print('Try a different number!')
 
 
+# Kontrola vítěze
 
-# Definice funkce pro kontrolu vítěze
+def winner():
+    return    ((board[0] != ' ' and board[0] == board[4] == board[8])
+            or (board[2] != ' ' and board[2] == board[4] == board[6])
+            or (board[0] != ' ' and board[0] == board[1] == board[2])
+            or (board[3] != ' ' and board[3] == board[4] == board[5])
+            or (board[6] != ' ' and board[6] == board[7] == board[8])
+            or (board[0] != ' ' and board[0] == board[3] == board[6])
+            or (board[1] != ' ' and board[1] == board[4] == board[7])
+            or (board[2] != ' ' and board[2] == board[5] == board[8]))
 
-def winner(board):
+# Výhra X, O nebo remíza
 
-    # vítěz je X
-    if (board[0][0] == board[0][1] == board[0][2] == "X" or
-        board[1][0] == board[1][1] == board[1][2] == "X" or
-        board[2][0] == board[2][1] == board[2][2] == "X" or
-        board[0][0] == board[1][0] == board[2][0] == "X" or
-        board[0][1] == board[1][1] == board[2][1] == "X" or
-        board[0][2] == board[1][2] == board[2][2] == "X" or
-        board[0][0] == board[1][1] == board[2][2] == "X" or
-        board[0][2] == board[1][1] == board[2][0] == "X"):
-            
+for expectation in range(9):
+    if expectation % 2 == 0:
+        print(separator)
+        moves = int(input(f'Player {player_x} | Please enter your move number: '))
+        print(separator)
+        check(moves)
+        board[moves -1] = player_x
+        playing_board(board)
+        win = winner()
+        if win is True:
             print(separator)
-            print('Congratulations, the player X WON!')
+            print(f'Congratulations, the player {player_x} WON!')
+            print(separator)
+            break
+        elif expectation == 8:
+            print(separator)
+            print("It's a draw!")
             print(separator)
 
-    # vítěz je O
-    elif (board[0][0] == board[0][1] == board[0][2] == "O" or
-        board[1][0] == board[1][1] == board[1][2] == "O" or
-        board[2][0] == board[2][1] == board[2][2] == "O" or
-        board[0][0] == board[1][0] == board[2][0] == "O" or
-        board[0][1] == board[1][1] == board[2][1] == "O" or
-        board[0][2] == board[1][2] == board[2][2] == "O" or
-        board[0][0] == board[1][1] == board[2][2] == "O" or
-        board[0][2] == board[1][1] == board[2][0] == "O"):
-            
-            print(separator)
-            print('Congratulations, the player O WON!')
-            print(separator)
-        
     else:
         print(separator)
-        print("It's a draw!")
+        moves = int(input(f'Player {player_o} | Please enter your move number: '))
         print(separator)
+        check(moves)
+        board[moves -1] = player_o
+        playing_board(board)
+        win = winner()
+        if win is True:
+            print(separator)
+            print(f'Congratulations, the player {player_o} WON!')
+            print(separator)
+            break
+        elif expectation == 8:
+            print(separator)
+            print("It's a draw!")
+            print(separator)
+
+
 
 
 
