@@ -39,7 +39,32 @@ def great():
     print("Let's start the game")
     print(separator_2)
 
-# great()
+great()
+
+# Vytvoření hrací plochy
+
+board = [' ',' ',' ',
+         ' ',' ',' ',
+         ' ',' ',' ']
+
+def playing_board(board):
+    '''Nakreslení hrací plochy'''
+
+    print('+---+---+---+')
+    print(f'| {board[0]} | {board[1]} | {board[2]} |')
+    print('+---+---+---+')
+    print(f'| {board[3]} | {board[4]} | {board[5]} |')
+    print('+---+---+---+')
+    print(f'| {board[6]} | {board[7]} | {board[8]} |')
+    print('+---+---+---+')
+
+
+
+
+
+
+
+
 
 
 
