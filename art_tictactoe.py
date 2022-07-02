@@ -1,10 +1,10 @@
-"""
-projekt_2.py: druhý projekt do Engeto Online Python Akademie
+art = '''
+ _   _      _             _             
+| | (_)    | |           | |            
+| |_ _  ___| |_ __ _  ___| |_ ___   ___ 
+| __| |/ __| __/ _` |/ __| __/ _ \ / _ 
+| |_| | (__| || (_| | (__| || (_) |  __/
+ \__|_|\___|\__\__,_|\___|\__\___/ \___|
 
-TIC TAC TOE GAME
-
-author: Lucia Solčanová
-email: lucia.solcanova@gmail.com
-discord: Lucka #0676
-"""
+'''
 
